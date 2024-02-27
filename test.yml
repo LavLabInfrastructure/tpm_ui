@@ -1,0 +1,16 @@
+security:
+  permissions:
+    lavlab-brain: ["/lavlab-brain"]
+  saml:
+    service:
+      sp:
+        discoveryUrl: "https://stubidp.sustainsys.com/DiscoveryService" # Discovery service URL
+        entityId: "https://stubidp.sustainsys.com" # Entity ID
+        metadataUrl: "https://stubidp.sustainsys.com/Federation" # Metadata URL
+
+pages:
+  - name: LaViolette Lab Brain TPM Service
+    path: /lavlab-brain
+    pattern: '^[0-9]+$'
+    backend:
+      url: "https://backend-url.com" # Provide the actual backend URL

@@ -1,0 +1,90 @@
+security:
+  saml: # SAML_CONFIG passthrough
+    xmlsec_binary: "/usr/bin/xmlsec1"
+    entityid: "http://localhost:8000/saml2/"
+    attribute_map_dir: "./attribute-maps"
+    # allow_unknown_attributes: true
+
+    service:
+      sp:
+        name: "Your Service Provider Name"
+        # name_id_format: "saml2.saml.NAMEID_FORMAT_TRANSIENT"
+        endpoints:
+          assertion_consumer_service:
+            - "http://localhost:8000/saml2/acs/"
+          single_logout_service:
+            url: 'http://localhost:8000/saml2/logout/'  # Your desired URL
+            binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+        # signing_algorithm:  "saml2.xmldsig.SIG_RSA_SHA256"
+        # digest_algorithm: "saml2.xmldsig.DIGEST_SHA256"
+        force_authn: false
+        name_id_format_allow_create: false
+        # required_attributes:
+        # - givenName
+        # - sn
+        # - mail
+        # optional_attributes:
+        # - eduPersonAffiliation
+        want_response_signed: true
+        authn_requests_signed: true
+        want_assertions_signed: false
+        only_use_keys_in_metadata: true
+        allow_unsolicited: false
+        idp:
+          'https://stubidp.sustainsys.com':
+            single_sign_on_service: 'https://stubidp.sustainsys.com/'
+            single_sign_out_service: https://stubidp.sustainsys.com/Logout/'
+
+    metadata:
+      # local:
+      # - path.join(BASEDIR, 'remote_metadata.xml')
+      remote:
+      - url: https://stubidp.sustainsys.com/Metadata
+      # mdq:
+      # - url: https://ds.testunical.it
+      #   cert: certficates/others/ds.testunical.it.cert
+
+    debug: 1
+    key_file: /home/mjbarrett/Code/other/tpm_ui/private.key
+    cert_file: /home/mjbarrett/Code/other/tpm_ui/public.pem
+    encryption_keypairs:
+    - key_file: /home/mjbarrett/Code/other/tpm_ui/private.key
+      cert_file: /home/mjbarrett/Code/other/tpm_ui/public.pem
+
+    contact_person:
+    - given_name: Lorenzo
+      sur_name: Gil
+      company: Yaco Sistemas
+      email_address: lorenzo.gil.sanchez@gmail.com
+      contact_type: technical
+    - given_name: Angel
+      sur_name: Fernandez
+      company: Yaco Sistemas
+      email_address: angel@yaco.es
+      contact_type: administrative
+    organization:
+      name:
+      - - Yaco Sistemas
+        - es
+      - - Yaco Systems
+        - en
+      display_name:
+      - - Yaco
+        - es
+      - - Yaco
+        - en
+      url:
+      - - http://www.yaco.es
+        - es
+      - - http://www.yaco.com
+        - en
+
+  permissions:
+    lavlab-brain: ["/lavlab-brain"]
+
+pages:
+  - name: LaViolette Lab Brain TPM Service
+    path: /lavlab-brain
+    pattern: '^[0-9]+$'
+    backend:
+      url: ""

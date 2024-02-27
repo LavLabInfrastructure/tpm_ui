@@ -1,0 +1,24 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Pages</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <a href="{{ LOGOUT_URL }}">Logout</a>
+    {% endif %}
+    <h1>Available Pages</h1>
+    <ul>
+        {% for page in pages %}
+            <li><a href="{{ page.path }}">{{ page.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

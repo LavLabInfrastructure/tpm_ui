@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    <div class="header">
+        <h1>{{ page_name }}</h1>
+    </div>
+    <div class="content">
+        <p>Welcome to the {{ page_name }} page!</p>
+        <!-- Add your content here -->
+    </div>
+</body>
+</html>
